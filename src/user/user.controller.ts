@@ -23,10 +23,9 @@ export class UserController {
     });
   }
 
-  @Get(':user_id')
-  async getUserById(@Param('user_id', new ParseIntPipe()) user_id) {
-    const condition = { id: user_id };
-    return await this.service.user(condition).catch(() => {
+  @Get(':id')
+  async getUserById(@Param('id', new ParseIntPipe()) id) {
+    return await this.service.user({ id }).catch(() => {
       throw new BadRequestException();
     });
   }
@@ -50,10 +49,9 @@ export class UserController {
     });
   }
 
-  @Delete(':user_id')
-  async deleteUser(@Param('user_id', new ParseIntPipe()) user_id) {
-    const condition = { id: user_id };
-    return this.service.deleteUser(condition).catch(() => {
+  @Delete(':id')
+  async deleteUser(@Param('id', new ParseIntPipe()) id) {
+    return this.service.deleteUser({ id }).catch(() => {
       throw new BadRequestException();
     });
   }
