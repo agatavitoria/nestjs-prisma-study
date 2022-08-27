@@ -10,7 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto, UserUpdateDto } from './dtos';
+import { CreateUserDto, UpdateUserDto } from './dtos';
 
 @Controller('user')
 export class UserController {
@@ -38,7 +38,7 @@ export class UserController {
   }
 
   @Put()
-  async updateUser(@Body() params: UserUpdateDto) {
+  async updateUser(@Body() params: UpdateUserDto) {
     const { id, email, name, password } = params;
 
     const where = { id };
