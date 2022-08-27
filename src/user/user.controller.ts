@@ -39,8 +39,7 @@ export class UserController {
 
   @Put()
   async updateUser(@Body() user: UpdateUserDto) {
-    return await this.service.updateUser(user).catch((err) => {
-      console.log(err);
+    return await this.service.updateUser(user).catch(() => {
       throw new BadRequestException();
     });
   }

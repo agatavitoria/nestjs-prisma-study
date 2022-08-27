@@ -32,7 +32,6 @@ export class UserService {
     }
 
     const { id, email, name, password } = user;
-
     return this.userRepository.update({
       where: { id },
       data: { email, name, password },
