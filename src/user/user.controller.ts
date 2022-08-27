@@ -18,40 +18,36 @@ export class UserController {
 
   @Get()
   async getAllUsers() {
-    return await this.service.users({}).catch(() => {
+    return await this.service.getUsers().catch(() => {
       throw new BadRequestException();
     });
   }
 
-  @Get(':id')
-  async getUserById(@Param('id', new ParseIntPipe()) id) {
-    return await this.service.user({ id }).catch(() => {
+  @Get(':user_id')
+  async getUserById(@Param('user_id', new ParseIntPipe()) userId) {
+    return await this.service.getUser(userId).catch(() => {
       throw new BadRequestException();
     });
   }
 
   @Post()
-  async createUser(@Body() params: CreateUserDto) {
-    return await this.service.create({ ...params }).catch(() => {
+  async createUser(@Body() user: CreateUserDto) {
+    return await this.service.createUser(user).catch(() => {
       throw new BadRequestException();
     });
   }
 
   @Put()
-  async updateUser(@Body() params: UpdateUserDto) {
-    const { id, email, name, password } = params;
-
-    const where = { id };
-    const data = { email, name, password };
-
-    return await this.service.updateUser({ where, data }).catch(() => {
+  async updateUser(@Body() user: UpdateUserDto) {
+    return await this.service.updateUser(user).catch((err) => {
+      console.log(err);
       throw new BadRequestException();
     });
   }
 
-  @Delete(':id')
-  async deleteUser(@Param('id', new ParseIntPipe()) id) {
-    return this.service.deleteUser({ id }).catch(() => {
+  @Delete(':user_id')
+  async deleteUser(@Param('user_id', new ParseIntPipe()) userId) {
+    return this.service.deleteUser(userId).catch(() => {
       throw new BadRequestException();
     });
   }

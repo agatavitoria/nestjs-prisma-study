@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from "@prisma/client";
 
 export interface GetUsers {
   skip?: number;
@@ -6,9 +6,4 @@ export interface GetUsers {
   cursor?: Prisma.UserWhereUniqueInput;
   where?: Prisma.UserWhereInput;
   orderBy?: Prisma.UserOrderByWithRelationInput;
-}
-
-export interface UpdateUser {
-  where: Prisma.UserWhereUniqueInput;
-  data: Prisma.UserUpdateInput;
 }
