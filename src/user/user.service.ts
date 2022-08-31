@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
-import { CreateUserDto, UpdateUserDto } from './dtos';
+import { CreateUserRequestDTO, UpdateUserRequestDTO } from './dtos';
 import { UserRepository } from './user.repository';
 
 @Injectable()
@@ -22,11 +22,11 @@ export class UserService {
     return this.userRepository.users({});
   }
 
-  async createUser(user: CreateUserDto): Promise<User> {
+  async createUser(user: CreateUserRequestDTO): Promise<User> {
     return this.userRepository.create(user);
   }
 
-  async updateUser(user: UpdateUserDto): Promise<User | null> {
+  async updateUser(user: UpdateUserRequestDTO): Promise<User | null> {
     if (!(await this.userExists(user.id))) {
       return null;
     }

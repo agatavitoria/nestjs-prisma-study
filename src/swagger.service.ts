@@ -6,7 +6,6 @@ export const enableSwagger = (app: INestApplication, path = 'api') => {
     .setTitle('API - Prisma And NestJS')
     .setDescription('Api for studying Prisma with NestJS')
     .setVersion('1.0')
-    .addTag('user')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
